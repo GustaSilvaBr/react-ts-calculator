@@ -1,0 +1,45 @@
+div.display {
+    flex-direction: column;
+    align-items: flex-end;
+
+    gap: 6pt;
+
+    background-color: #202d41c7;
+
+    border-radius:5px;
+
+    padding:12px;
+
+
+    box-shadow: inset 0px 0px 1px 2px rgb(83, 76, 76);
+
+
+    div.calc-historic {
+        flex-direction: column;
+        align-items: flex-end;
+
+        color: rgba(219, 219, 219, 0.849);
+        font-size: var(--historic-calc-size);
+    }
+
+    div.latest-calcs {
+        flex-direction: column;
+        align-items: flex-end;
+
+        gap: 1pt;
+
+        color: var(--text-secondary-color);
+
+        div.last-calc {
+            justify-content: flex-end;
+            font-size: var(--last-calc-size);
+        }
+
+        div.current-calc {
+            justify-content: flex-end;
+            font-size: var(--current-calc-size);
+        }
+
+    }
+
+}

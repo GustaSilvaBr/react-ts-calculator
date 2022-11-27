@@ -1,0 +1,20 @@
+div.button-in-calc{
+    border-radius:10px;
+    box-shadow: -3px 3px 1px rgb(83, 76, 76);
+}
+
+div.button-in-calc.number{
+    background-color: var(--btn-primary-color);
+    color: var(--text-primary-color);
+}
+
+div.button-in-calc.action{
+    background-color: var(--btn-secondary-color);
+    color: var(--text-secondary-color);
+}
+
+div.button-in-calc.result{
+    background-color: var(--emphasis-back-color);
+    color: var(-text-primary-color);
+}
+
