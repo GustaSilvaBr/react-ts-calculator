@@ -1,0 +1,49 @@
+:root{
+    --calc-back-color: #6B9CE7;
+    --btn-primary-color:#BDD7FF;
+    --btn-secondary-color: #385580;
+   
+
+    --emphasis-back-color:#FFE9BD;
+
+    --text-primary-color:#0A1C37;
+    --text-secondary-color:#FFF;
+
+    --calc-title-size: 40pt;
+    --historic-calc-size:24pt;
+    --last-calc-size: 32pt;
+    --current-calc-size: 64pt;
+
+
+}
+
+*{
+    margin:0;
+    padding:0;
+
+    box-sizing:border-box;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div.App{
+    width:100vw;
+    height:100vh;
+
+    background-color: var(--calc-back-color);
+}
+
+div.flex{
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    width:100%;
+    height: 100%;
+
+    
+}
