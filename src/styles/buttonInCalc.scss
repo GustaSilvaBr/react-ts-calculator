@@ -1,19 +1,27 @@
-div.button-in-calc{
+button.button-in-calc{
+    border: none;
+    outline-style: none;
+
+    width:100%;
+    height: 100%;
+
+    cursor: pointer;
+
     border-radius:10px;
     box-shadow: -3px 3px 1px rgb(83, 76, 76);
 }
 
-div.button-in-calc.number{
+button.button-in-calc.number{
     background-color: var(--btn-primary-color);
     color: var(--text-primary-color);
 }
 
-div.button-in-calc.action{
+button.button-in-calc.action{
     background-color: var(--btn-secondary-color);
     color: var(--text-secondary-color);
 }
 
-div.button-in-calc.result{
+button.button-in-calc.result{
     background-color: var(--emphasis-back-color);
     color: var(-text-primary-color);
 }

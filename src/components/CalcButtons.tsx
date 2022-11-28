@@ -3,77 +3,60 @@ import React from 'react';
 import '../styles/calcButtons.scss';
 
 import {ButtonInCalc} from './ButtonInCalc';
+import {useCalcContext} from '../contexts/CalcContext';
+
 
 export function CalcButtons(){
+    // const {currentCalc, setCurrentCalc} = useCalcContext();
+
+
     return (
         <div className="flex calc-buttons">
-            <ButtonInCalc kindOfButton='action'>
-                <span>AC</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='action'>
-                <span>C</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='number'>
-                <span> {`<-`} </span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='result'>
-                <span>=</span>
-            </ButtonInCalc>    
+            <ButtonInCalc kindOfButton='action' valueOfButton='AC'/>
+                    
+            <ButtonInCalc kindOfButton='action' valueOfButton='C'/>
+                 
+            <ButtonInCalc kindOfButton='number' valueOfButton='<-'/>
+                 
+            <ButtonInCalc kindOfButton='calculate' valueOfButton='='/>
+                 
 
-            <ButtonInCalc kindOfButton='number'>
-                <span>7</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='number'>
-                <span>8</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='number'>
-                <span>9</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='action'>
-                <span>/</span>
-            </ButtonInCalc>    
+            <ButtonInCalc kindOfButton='number' valueOfButton='7'/>
+                 
+            <ButtonInCalc kindOfButton='number' valueOfButton='8'/>
+                 
+            <ButtonInCalc kindOfButton='number' valueOfButton='9'/>
+                 
+            <ButtonInCalc kindOfButton='action' valueOfButton='/'/>
+                 
 
-            <ButtonInCalc kindOfButton='number'>
-                <span>4</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='number'>
-                <span>5</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='number'>
-                <span>6</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='action'>
-                <span>X</span>
-            </ButtonInCalc>    
+            <ButtonInCalc kindOfButton='number' valueOfButton='4'/>
+                 
+            <ButtonInCalc kindOfButton='number' valueOfButton='5'/>
+                 
+            <ButtonInCalc kindOfButton='number' valueOfButton='6'/>
+                 
+            <ButtonInCalc kindOfButton='action' valueOfButton='X' />
+                 
 
-            <ButtonInCalc kindOfButton='number'>
-                <span>1</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='number'>
-                <span>2</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='number'>
-                <span>3</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='action'>
-                <span>-</span>
-            </ButtonInCalc>    
+            <ButtonInCalc kindOfButton='number' valueOfButton='1'/>
+                 
+            <ButtonInCalc kindOfButton='number' valueOfButton='2'/>
+                 
+            <ButtonInCalc kindOfButton='number' valueOfButton='3'/>
+                 
+            <ButtonInCalc kindOfButton='action' valueOfButton='-' />
+                 
 
-            <ButtonInCalc kindOfButton='action'>
-                <span>{`+/-`}</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='number'>
-                <span>0</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='number'>
-                <span>.</span>
-            </ButtonInCalc>    
-            <ButtonInCalc kindOfButton='action'>
-                <span>+</span>
-            </ButtonInCalc>    
-
+            <ButtonInCalc kindOfButton='action' valueOfButton='+/-'/>
+                 
+            <ButtonInCalc kindOfButton='number' valueOfButton='0'/>
+                 
+            <ButtonInCalc kindOfButton='number' valueOfButton='.'/>
+                 
+            <ButtonInCalc kindOfButton='action' valueOfButton='+'/>
+                
             
         </div>
     )
 }
-

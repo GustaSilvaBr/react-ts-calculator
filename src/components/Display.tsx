@@ -3,8 +3,12 @@ import React from 'react';
 import '../styles/display.scss';
 
 import {CalcHistoricLine} from '../components/CalcHistoricLine';
+import { useCalcContext } from '../contexts/CalcContext';
 
 export function Display(){
+    const {currentCalc} = useCalcContext();
+
+
     return(
         <div className="flex display">
 
@@ -14,13 +18,13 @@ export function Display(){
                 <CalcHistoricLine/>
             </div>
 
-            <div className='flex latest-calcs'>
-                <div className='flex last-calc'>
-                    <span>32x2</span>
+            <div className='flex current-calc'>
+                <div className='flex calc'>
+                    <span>{currentCalc}</span>
                    
                 </div>
-                <div className='flex current-calc'>
-                    <span> =64 </span>
+                <div className='flex result'>
+                    <span> {currentCalc} </span>
                 </div>
             </div>
         </div>

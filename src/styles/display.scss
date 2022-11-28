@@ -22,7 +22,7 @@ div.display {
         font-size: var(--historic-calc-size);
     }
 
-    div.latest-calcs {
+    div.current-calc {
         flex-direction: column;
         align-items: flex-end;
 
@@ -30,12 +30,12 @@ div.display {
 
         color: var(--text-secondary-color);
 
-        div.last-calc {
+        div.calc {
             justify-content: flex-end;
             font-size: var(--last-calc-size);
         }
 
-        div.current-calc {
+        div.result {
             justify-content: flex-end;
             font-size: var(--current-calc-size);
         }
