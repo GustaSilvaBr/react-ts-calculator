@@ -11,14 +11,14 @@ interface buttonInCalcInterface {
     '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '.',
 }
 
-export function ButtonInCalc({ kindOfButton, valueOfButton, isNumberOrOperation=true }: buttonInCalcInterface) {
-    const { clearDisplay, calculate, backSpaceInCalc, handleSetCurrentCalc } = useCalcContext();
+export function ButtonInCalc({ kindOfButton, valueOfButton, isNumberOrOperation = true }: buttonInCalcInterface) {
+    const { clearDisplay, hasToCalculate, backSpaceInCalc, handleSetCurrentCalc } = useCalcContext();
 
 
     function handleOnClick() {
-        if(isNumberOrOperation){
+        if (isNumberOrOperation) {
             handleSetCurrentCalc(valueOfButton);
-        }else{
+        } else {
             switch (valueOfButton) {
                 case 'AC':
                     clearDisplay({ isToClearHistoric: true });
@@ -32,9 +32,9 @@ export function ButtonInCalc({ kindOfButton, valueOfButton, isNumberOrOperation=
                 case '+/-':
                     break;
                 case '=':
-                    calculate();
+                    hasToCalculate();
                     break;
-            } 
+            }
         }
     }
 
