@@ -2,44 +2,43 @@ import React, { ReactNode } from 'react';
 
 import '../styles/buttonInCalc.scss';
 
-import {useCalcContext} from '../contexts/CalcContext';
+import { useCalcContext } from '../contexts/CalcContext';
 
-interface buttonInCalcInterface{
+interface buttonInCalcInterface {
     kindOfButton: 'action' | 'number' | 'calculate',
+    isNumberOrOperation?: boolean,
     valueOfButton: '/' | 'X' | '-' | '+' | '+/-' | 'AC' | 'C' | '<-' | '=' |
     '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '.',
 }
 
-export function ButtonInCalc({kindOfButton, valueOfButton }:buttonInCalcInterface){
-    const {currentCalc, setCurrentCalc} = useCalcContext();
+export function ButtonInCalc({ kindOfButton, valueOfButton, isNumberOrOperation=true }: buttonInCalcInterface) {
+    const { clearDisplay, calculate, backSpaceInCalc, handleSetCurrentCalc } = useCalcContext();
 
-    function handleEnterNumber(){
-        setCurrentCalc(currentCalc=="0"?(valueOfButton):(currentCalc+valueOfButton));
-    }
 
-    function handleEnterAction(){
-
-    }
-
-    function handleEnterCalculate(){
-
-    }
-
-    function handleOnClick(){
-        switch(kindOfButton){
-            case 'action':
-                handleEnterAction();
-                break;
-            case 'number':
-                handleEnterNumber();
-                break;
-            case 'calculate':
-                handleEnterCalculate();
-                break;
+    function handleOnClick() {
+        if(isNumberOrOperation){
+            handleSetCurrentCalc(valueOfButton);
+        }else{
+            switch (valueOfButton) {
+                case 'AC':
+                    clearDisplay({ isToClearHistoric: true });
+                    break;
+                case 'C':
+                    clearDisplay({ isToClearHistoric: false });
+                    break;
+                case '<-':
+                    backSpaceInCalc();
+                    break;
+                case '+/-':
+                    break;
+                case '=':
+                    calculate();
+                    break;
+            } 
         }
     }
 
-    return(
+    return (
         <button className={`button-in-calc ${kindOfButton}`} onClick={handleOnClick}>
             {valueOfButton}
         </button>

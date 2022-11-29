@@ -12,13 +12,13 @@ export function CalcButtons(){
 
     return (
         <div className="flex calc-buttons">
-            <ButtonInCalc kindOfButton='action' valueOfButton='AC'/>
+            <ButtonInCalc kindOfButton='action' valueOfButton='AC' isNumberOrOperation={false}/>
                     
-            <ButtonInCalc kindOfButton='action' valueOfButton='C'/>
+            <ButtonInCalc kindOfButton='action' valueOfButton='C' isNumberOrOperation={false}/>
                  
-            <ButtonInCalc kindOfButton='number' valueOfButton='<-'/>
+            <ButtonInCalc kindOfButton='action' valueOfButton='<-' isNumberOrOperation={false}/>
                  
-            <ButtonInCalc kindOfButton='calculate' valueOfButton='='/>
+            <ButtonInCalc kindOfButton='calculate' valueOfButton='=' isNumberOrOperation={false}/>
                  
 
             <ButtonInCalc kindOfButton='number' valueOfButton='7'/>
@@ -48,7 +48,7 @@ export function CalcButtons(){
             <ButtonInCalc kindOfButton='action' valueOfButton='-' />
                  
 
-            <ButtonInCalc kindOfButton='action' valueOfButton='+/-'/>
+            <ButtonInCalc kindOfButton='action' valueOfButton='+/-' isNumberOrOperation={false}/>
                  
             <ButtonInCalc kindOfButton='number' valueOfButton='0'/>
                  

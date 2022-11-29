@@ -1,9 +1,14 @@
 import React from 'react';
 
-export function CalcHistoricLine() {
+interface CalcHistoricLineInterface{
+    calcHistoric: string,
+    calcResult: string
+}
+
+export function CalcHistoricLine({calcHistoric, calcResult}:CalcHistoricLineInterface) {
     return (
         <span className="calc-historic-line">
-            90-2*45=0
+            {calcHistoric}={calcResult}
         </span>
     )
 }

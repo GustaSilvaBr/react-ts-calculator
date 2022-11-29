@@ -6,16 +6,17 @@ import {CalcHistoricLine} from '../components/CalcHistoricLine';
 import { useCalcContext } from '../contexts/CalcContext';
 
 export function Display(){
-    const {currentCalc} = useCalcContext();
-
+    const {currentCalc, currentResult, calcHistoricList} = useCalcContext();
 
     return(
         <div className="flex display">
 
             <div className="flex calc-historic">
-                <CalcHistoricLine/>
-                <CalcHistoricLine/>
-                <CalcHistoricLine/>
+                {
+                    calcHistoricList.map((calcHistoricItem, index)=>{
+                        return ( <CalcHistoricLine calcHistoric={calcHistoricItem.calc} calcResult={calcHistoricItem.result} key={index}/>)
+                    })
+                }
             </div>
 
             <div className='flex current-calc'>
@@ -24,7 +25,7 @@ export function Display(){
                    
                 </div>
                 <div className='flex result'>
-                    <span> {currentCalc} </span>
+                    <span> {currentResult} </span>
                 </div>
             </div>
         </div>
