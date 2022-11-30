@@ -7,7 +7,6 @@ interface calcHistoricListInterface {
 
 interface CalcContextType {
     currentCalc: string,
-    currentResult: string,
     calcHistoricList: calcHistoricListInterface[],
 
     clearDisplay: ({ isToClearHistoric }: { isToClearHistoric: boolean }) => void,
@@ -25,9 +24,7 @@ interface CalcProvider {
 
 export function CalcProvider({ children, }: CalcProvider) {
     const [currentCalc, setCurrentCalc] = useState<string>("0");
-    const [currentResult, setCurrentResult] = useState<string>(currentCalc);
     const [calcHistoricList, setCalcHistoricList] = useState<calcHistoricListInterface[]>([]);
-
 
     function hasToCalculate(value = "") {
         let firstNumber = "";
@@ -36,7 +33,7 @@ export function CalcProvider({ children, }: CalcProvider) {
         for (let i = 0; i < currentCalc.length; i++) {
             const calcItem = currentCalc[i];
 
-            if (stringIsNotANumber(calcItem) && calcItem != ".") {
+            if (isOperator(calcItem)) {
                 operator = calcItem;
             } else if (operator) {
                 lastNumber += calcItem;
@@ -45,30 +42,24 @@ export function CalcProvider({ children, }: CalcProvider) {
             }
         }
 
-        if (operator) {
-            if (stringIsNotANumber(value) && value != ".") {
-                if (stringIsNotANumber(currentCalc[currentCalc.length - 1]) && value != ".") {
-                    //change last item for new value
-                } else {
-                    calculate(firstNumber, operator, lastNumber);
-                }
-            }
-
-
+        if(operator && lastNumber != ""){
+            calculate(firstNumber, operator, lastNumber);
         }
     }
 
-    function stringIsNotANumber(value: string) {
-        const valueAsNumber = Number.parseFloat(value);
-        return isNaN(valueAsNumber);
+    useEffect(()=>{
+        console.log(currentCalc);
+    },[currentCalc]);
+
+    function isOperator(value: string) {
+        return value=="/" || value=="X" || value == "+" || value == "-";       
     }
 
     function clearDisplay({ isToClearHistoric }: { isToClearHistoric: boolean }) {
-        handleSetCurrentCalc("");
-        handleSetCurrentResult("");
-
+        setCurrentCalc("0");
+        console.log("cleaned");
         if (isToClearHistoric) {
-            handleSetCalcHistoricList([]);
+            setCalcHistoricList([]);
         }
     }
 
@@ -83,28 +74,25 @@ export function CalcProvider({ children, }: CalcProvider) {
 
     function handleSetCurrentCalc(value: string) {
 
-        hasToCalculate(value);
+        // hasToCalculate(value);
 
-        if (value == "") {
-            setCurrentCalc("0");
-        } else if (currentCalc == "0") {
+        if(alreadyCalculated()){
             setCurrentCalc(value);
-        } else {
-            setCurrentCalc(currentCalc + value);
-
+        }else {
+            if (value == "") {
+                setCurrentCalc("0");
+            } else if (currentCalc == "0") {
+                setCurrentCalc(value);
+            } else {
+                setCurrentCalc(currentCalc + value);
+            }
         }
+
+       
     }
 
-    function handleSetCurrentResult(value: typeof currentResult) {
-        if (value == "") {
-            setCurrentCalc("0");
-        } else if (value) {
-            setCurrentCalc(currentCalc + value);
-        }
-    }
-
-    function handleSetCalcHistoricList(list: typeof calcHistoricList) {
-        setCalcHistoricList(list);
+    function alreadyCalculated(){
+        return currentCalc.includes("=");
     }
 
     function calculate(firstNumber: string, operator: string, lastNumber: string) {
@@ -116,33 +104,29 @@ export function CalcProvider({ children, }: CalcProvider) {
             case '+':
                 result = firstNumberAsFloat + lastNumberAsFloat;
                 break;
-            case '':
-                result = firstNumberAsFloat + lastNumberAsFloat;
+            case '-':
+                result = firstNumberAsFloat - lastNumberAsFloat;
+                break;
+            case 'X':
+                result = firstNumberAsFloat * lastNumberAsFloat;
+                break;
+            case '/':
+                result = firstNumberAsFloat / lastNumberAsFloat;
                 break;
         }
 
-
-        console.log("result:", result);
+        setCurrentCalc(currentCalc + " = " + result);
     }
+
+    
 
     function negateCurrentCalc() {
 
     }
 
-    useEffect(() => {
-
-        if (currentCalc.length < 1) {
-            setCurrentCalc("0");
-        }
-
-        if (currentResult.length < 1) {
-            setCurrentResult("0");
-        }
-
-    }, [currentCalc, currentResult]);
 
     const values = {
-        currentCalc, currentResult, calcHistoricList,
+        currentCalc, calcHistoricList,
         clearDisplay, backSpaceInCalc, hasToCalculate, handleSetCurrentCalc
     }
 
