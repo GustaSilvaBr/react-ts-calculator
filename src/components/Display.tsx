@@ -6,7 +6,7 @@ import { CalcHistoricLine } from '../components/CalcHistoricLine';
 import { useCalcContext } from '../contexts/CalcContext';
 
 export function Display() {
-    const { currentCalc, calcHistoricList } = useCalcContext();
+    const { currentCalc, calcHistoricList, currentResult } = useCalcContext();
 
     return (
         <div className="flex display">
@@ -20,8 +20,12 @@ export function Display() {
             </div>
 
             <div className='flex current-calc'>
-                <div className='flex result'>
+                <div className='flex calc'>
                     <span>{currentCalc}</span>
+                   
+                </div>
+                <div className='flex result'>
+                    <span> {currentResult} </span>
                 </div>
             </div>
         </div>

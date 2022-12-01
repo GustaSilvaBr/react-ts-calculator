@@ -12,7 +12,7 @@ interface buttonInCalcInterface {
 }
 
 export function ButtonInCalc({ kindOfButton, valueOfButton, isNumberOrOperation = true }: buttonInCalcInterface) {
-    const { clearDisplay, hasToCalculate, backSpaceInCalc, handleSetCurrentCalc } = useCalcContext();
+    const { clearDisplay, backSpaceInCalc, handleSetCurrentCalc } = useCalcContext();
 
 
     function handleOnClick() {
@@ -31,9 +31,9 @@ export function ButtonInCalc({ kindOfButton, valueOfButton, isNumberOrOperation 
                     break;
                 case '+/-':
                     break;
-                case '=':
-                    hasToCalculate();
-                    break;
+                // case '=':
+                //     hasToCalculate();
+                //     break;
             }
         }
     }
