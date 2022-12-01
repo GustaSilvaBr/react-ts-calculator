@@ -51,7 +51,7 @@ export function CalcProvider({ children, }: CalcProvider) {
 
     function clearDisplay({ isToClearHistoric }: { isToClearHistoric: boolean }) {
         setCurrentCalc("0");
-        console.log("cleaned");
+        setCurrentResult("0");
         if (isToClearHistoric) {
             setCalcHistoricList([]);
         }
@@ -77,7 +77,7 @@ export function CalcProvider({ children, }: CalcProvider) {
                 let newCurrentCalc = currentCalc.split('').filter((item, index)=>index!=currentCalcLastIndex).join('');
                 setCurrentCalc(newCurrentCalc + newInput);
             } else if (canCalculate(currentCalc)) {
-                const result = getCalculateResult();
+                const result = getCalculateResult(currentCalc);
                 setCurrentCalc(result + newInput);
             } else {
                 setCurrentCalc(currentCalc + newInput);
@@ -86,44 +86,36 @@ export function CalcProvider({ children, }: CalcProvider) {
             const calculateWithNewInput = currentCalc + newInput;
             if(canCalculate(calculateWithNewInput)){
                 setCurrentCalc(calculateWithNewInput);
-                const result = getCalculateResult();
-                setCurrentResult(result?.toString()!);
+                const result = getCalculateResult(calculateWithNewInput);
+                handleSetCurrentResult(result?.toString()!);
             }else{
                 if(currentCalc == "0"){
                     setCurrentCalc(newInput);
+                    handleSetCurrentResult(newInput);
                 }else{
                     setCurrentCalc(currentCalc + newInput);
+                    handleSetCurrentResult(currentCalc + newInput);
                 }
             }
         }
 
+    }
 
-
-        // if (alreadyCalculated()) {
-        //     setCurrentCalc(newInput);
-        // } else {
-        //     if (newInput == "") {
-        //         setCurrentCalc("0");
-        //     } else if (currentCalc == "0") {
-        //         setCurrentCalc(newInput);
-        //     } else {
-        //         setCurrentCalc(currentCalc + newInput);
-        //     }
-        // }
-
-
+    function handleSetCurrentResult(newResult: string){
+        setCurrentResult("= "+newResult);
     }
 
     function alreadyCalculated() {
         return currentCalc.includes("=");
     }
 
-    function getCalculateResult() {
+    function getCalculateResult(operationToCalc: string) {
         let firstNumber = "";
         let operator;
         let lastNumber = "";
-        for (let i = 0; i < currentCalc.length; i++) {
-            const calcItem = currentCalc[i];
+        console.log(operationToCalc);
+        for (let i = 0; i < operationToCalc.length; i++) {
+            const calcItem = operationToCalc[i];
 
             if (isOperator(calcItem)) {
                 operator = calcItem;

@@ -21,7 +21,7 @@ export function Display() {
 
             <div className='flex current-calc'>
                 <div className='flex calc'>
-                    <span>{currentCalc}</span>
+                    <span>{currentCalc=="0"?(<></>):(currentCalc)}</span>
                    
                 </div>
                 <div className='flex result'>
